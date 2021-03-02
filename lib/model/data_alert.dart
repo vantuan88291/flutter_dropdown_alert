@@ -2,14 +2,9 @@ class DataAlert {
   String message;
   String title;
   TypeAlert type;
-  bool isShow;
   Map<String, dynamic> payload;
 
-  DataAlert(this.message, this.title, this.type, this.isShow, {this.payload});
-
-  setShow(show) {
-    this.isShow = show;
-  }
+  DataAlert(this.message, this.title, this.type, {this.payload});
 }
 
 enum TypeAlert { success, error, warning }

@@ -41,11 +41,21 @@ Just create a `Stack` widget and add `DropdownAlert()` inside `MaterialApp` whic
 Next, import 'alert_controller.dart' into your dart code and use it anywhere
 
 ```dart
+import 'package:flutter_dropdown_alert/alert_controller.dart';
+```
+
+```dart
    AlertController.instance
            .show("Title", "message here!", TypeAlert.success, payload);
 ```
 
 The `payload` param is `Map<String, dynamic>`, this param is optional, should use to give data into the alert and get it when click on alert.
+
+## Hide alert:
+The alert will automatically hide, but if you use `delayDismiss: 0`, it will freeze and not auto hide, you have to hide the alert by this code:
+```dart
+   AlertController.instance.hide();
+```
 
 ## Listener when click on alert:
 
@@ -89,7 +99,7 @@ There are 2 ways to do that:
 | maxLinesTitle              |                                                                                       | null                                                                                                                                                                                  |
 | maxLinesContent            |                                                                                       | null                                                                                                                                                                                  |
 | duration                   | duration of animation                                                                 | 300                                                                                                                                                                                   |
-| delayDismiss               | delay time when alert auto dismiss                                                    | 3000                                                                                                                                                                                  |
+| delayDismiss               | delay time when alert auto dismiss, set to 0 if you want to freeze alert              | 3000                                                                                                                                                                                  |
 
 
 `The ideal from react-native-dropdownalert`

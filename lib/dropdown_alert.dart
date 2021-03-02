@@ -44,6 +44,8 @@ class DropdownAlert extends StatefulWidget {
 
 class DropdownAlertWidget extends State<DropdownAlert>
     with TickerProviderStateMixin {
+  final DURATION = 300;
+  final DELAY = 3000;
   AnimationController _animationController;
   Animation _animationPush;
   Timer _timer;
@@ -54,6 +56,23 @@ class DropdownAlertWidget extends State<DropdownAlert>
   TypeAlert type;
   Map<String, dynamic> payload;
 
+  int getDuration() {
+    if (widget.duration != null && widget.duration > 0) {
+      return widget.duration;
+    }
+    return DURATION;
+  }
+
+  int getDelay() {
+    if (widget.delayDismiss != null && widget.delayDismiss > 0) {
+      return widget.delayDismiss;
+    } else if (widget.delayDismiss == null) {
+      return DELAY;
+    } else if (widget.delayDismiss <= 0) {
+      return null;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -61,18 +80,19 @@ class DropdownAlertWidget extends State<DropdownAlert>
     _controller.show = show;
     _controller.hide = hide;
     _animationController = AnimationController(
-        vsync: this, duration: Duration(milliseconds: widget.duration ?? 300));
+        vsync: this, duration: Duration(milliseconds: getDuration()));
     _animationPush =
         Tween(begin: -180.0, end: 0.0).animate(_animationController);
   }
 
   show(String title, String message, TypeAlert type,
       [Map<String, dynamic> payload]) {
+    final delay = getDelay();
     if (!_animationController.isDismissed) {
       cancelTimerRelay();
       cancelTimer();
       _animationController.reverse();
-      _timerRelay = Timer(Duration(milliseconds: widget.duration ?? 300), () {
+      _timerRelay = Timer(Duration(milliseconds: getDuration()), () {
         setState(() {
           this.title = title;
           this.message = message;
@@ -80,9 +100,11 @@ class DropdownAlertWidget extends State<DropdownAlert>
           this.payload = payload ?? null;
         });
         _animationController.forward();
-        _timer = Timer(Duration(milliseconds: widget.delayDismiss ?? 3000), () {
-          _animationController.reverse();
-        });
+        if (delay != null) {
+          _timer = Timer(Duration(milliseconds: delay), () {
+            _animationController.reverse();
+          });
+        }
       });
     } else {
       setState(() {
@@ -92,9 +114,11 @@ class DropdownAlertWidget extends State<DropdownAlert>
         this.payload = payload ?? null;
       });
       _animationController.forward();
-      _timer = Timer(Duration(milliseconds: widget.delayDismiss ?? 3000), () {
-        _animationController.reverse();
-      });
+      if (delay != null) {
+        _timer = Timer(Duration(milliseconds: delay), () {
+          _animationController.reverse();
+        });
+      }
     }
   }
 
