@@ -38,7 +38,7 @@ Just create a `Stack` widget and add `DropdownAlert()` inside `MaterialApp` whic
 
 ## Show alert anywhere:
 
-Next, import 'alert_controller.dart' into your dart code and use it anywhere
+Next, import 'alert_controller.dart' into your dart code
 
 ```dart
 import 'package:flutter_dropdown_alert/alert_controller.dart';
