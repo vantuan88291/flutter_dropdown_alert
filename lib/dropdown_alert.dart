@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'alert_controller.dart';
-import 'button_widget.dart';
-import 'colors.dart';
 import 'model/data_alert.dart';
 
 typedef VoidCallBack = void Function(Map<String, dynamic>, TypeAlert);
@@ -157,13 +155,13 @@ class DropdownAlertWidget extends State<DropdownAlert>
   Color getBackground(TypeAlert type) {
     switch (type) {
       case TypeAlert.success:
-        return widget.successBackground ?? AppColor.green;
+        return widget.successBackground ?? Colors.green;
       case TypeAlert.warning:
-        return widget.warningBackground ?? AppColor.brown;
+        return widget.warningBackground ?? Color(0xFFCE863D);
       case TypeAlert.error:
         return widget.errorBackground ?? Colors.red;
       default:
-        return AppColor.green;
+        return Colors.green;
     }
   }
 
@@ -190,21 +188,27 @@ class DropdownAlertWidget extends State<DropdownAlert>
         top: _animationPush.value,
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
-          child: ButtonWidget(
-            radius: 0,
-            padding: EdgeInsets.only(top: 36, bottom: 18, left: 12, right: 12),
+          child: MaterialButton(
             color: getBackground(this.type ?? null),
-            onPress: onPress,
+            padding: EdgeInsets.only(top: 36, bottom: 18, left: 12, right: 12),
+            shape: new RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(0), side: BorderSide.none),
             child: Align(
               alignment: Alignment.topLeft,
               child: Row(
                 children: [
-                  iconUri != null ? Image.asset(
-                    iconUri,
-                    fit: BoxFit.contain,
-                    height: 30,
-                    width: 30,
-                  ) : Icon(getIcon(this.type ?? null), color: Colors.white, size: 34,),
+                  iconUri != null
+                      ? Image.asset(
+                          iconUri,
+                          fit: BoxFit.contain,
+                          height: 30,
+                          width: 30,
+                        )
+                      : Icon(
+                          getIcon(this.type ?? null),
+                          color: Colors.white,
+                          size: 34,
+                        ),
                   SizedBox(
                     width: 10,
                   ),
@@ -230,6 +234,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
                 ],
               ),
             ),
+            onPressed: onPress,
           ),
         ),
       ),
