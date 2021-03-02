@@ -49,8 +49,7 @@ import 'package:flutter_dropdown_alert/alert_controller.dart';
 ```
 
 ```dart
-   AlertController.instance
-           .show("Title", "message here!", TypeAlert.success, payload);
+   AlertController.show("Title", "message here!", TypeAlert.success, payload);
 ```
 
 The `payload` param is `Map<String, dynamic>`, this param is optional, should use to give data into the alert and get it when click on alert.
@@ -58,7 +57,7 @@ The `payload` param is `Map<String, dynamic>`, this param is optional, should us
 ## Hide alert:
 The alert will automatically hide, but if you use `delayDismiss: 0`, it will freeze and not auto hide, you have to hide the alert by this code:
 ```dart
-   AlertController.instance.hide();
+   AlertController.hide();
 ```
 
 ## Listener when click on alert:
@@ -67,7 +66,7 @@ There are 2 ways to do that:
 
 - Using listener of controller, put this code inside `initState()` of widget:
 ```dart
-   AlertController.instance.onTabListener((Map<String, dynamic> payload, TypeAlert type) {
+   AlertController.onTabListener((Map<String, dynamic> payload, TypeAlert type) {
          print("$payload - $type");
        });
 ```

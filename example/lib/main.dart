@@ -51,25 +51,22 @@ class _MyHomePageState extends State<MyHomePage> {
   void _success() {
     Map<String, dynamic> payload = new Map<String, dynamic>();
     payload["data"] = "content";
-    AlertController.instance
-        .show("Success", "Success message here!", TypeAlert.success, payload);
+    AlertController.show("Success", "Success message here!", TypeAlert.success, payload);
   }
 
   void _warning() {
-    AlertController.instance
-        .show("Warn!", "Warning message here!", TypeAlert.warning);
+    AlertController.show("Warn!", "Warning message here!", TypeAlert.warning);
   }
 
   void _error() {
-    AlertController.instance
-        .show("Error", "Error message here!", TypeAlert.error);
+    AlertController.show("Error", "Error message here!", TypeAlert.error);
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    AlertController.instance.onTabListener((Map<String, dynamic> payload, TypeAlert type) {
+    AlertController.onTabListener((Map<String, dynamic> payload, TypeAlert type) {
       print("$payload - $type");
     });
   }

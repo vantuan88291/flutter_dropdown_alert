@@ -77,8 +77,8 @@ class DropdownAlertWidget extends State<DropdownAlert>
   void initState() {
     super.initState();
     _controller = AlertController();
-    _controller.show = show;
-    _controller.hide = hide;
+    _controller.setShow(show);
+    _controller.setHide(hide);
     _animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: getDuration()));
     _animationPush =
@@ -145,8 +145,8 @@ class DropdownAlertWidget extends State<DropdownAlert>
     if (widget.onTap != null) {
       widget.onTap(this.payload, this.type);
     }
-    if (_controller.tabListener != null) {
-      _controller.tabListener(this.payload, this.type);
+    if (_controller.getTabListener() != null) {
+      _controller.getTabListener()(this.payload, this.type);
     }
   }
 

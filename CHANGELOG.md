@@ -17,3 +17,7 @@
 ## [0.0.5] - TODO: Add feature.
 
 * Add drag up to dismiss alert
+
+## [0.0.6] - TODO: Refactor AlertController
+
+* Remove instance of controller
