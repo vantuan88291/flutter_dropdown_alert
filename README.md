@@ -4,7 +4,7 @@
 
 A dropdown alert package for flutter
 
-Dropdown alert will help to notify to user when you call api success, error or something like that. It's will similar with push notification but you can custom more than that.
+Dropdown alert will help to notify to user when you call api success, error or something like that. It's will similar with push notification but you can custom more than that. You can show alert at anywhere without widget.
 
 ## Demo
 ![](https://github.com/vantuan88291/flutter_dropdown_alert/raw/master/screenshot/dropdown.gif)
@@ -22,6 +22,10 @@ dependencies:
 
 Just create a `Stack` widget and add `DropdownAlert()` inside `MaterialApp` which should be in main.dart like this:
 ```dart
+import 'package:flutter_dropdown_alert/dropdown_alert.dart';
+```
+
+```dart
  MaterialApp(
        title: 'Dropdown Alert Demo',
        theme: ThemeData(
@@ -36,7 +40,7 @@ Just create a `Stack` widget and add `DropdownAlert()` inside `MaterialApp` whic
      );
 ```
 
-## Show alert anywhere:
+## Show alert anywhere, even inside bloc without widget:
 
 Next, import 'alert_controller.dart' into your dart code
 

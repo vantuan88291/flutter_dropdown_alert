@@ -210,55 +210,58 @@ class DropdownAlertWidget extends State<DropdownAlert>
       animation: _animationController,
       builder: (c, v) => Positioned(
         top: _animationPush.value,
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          child: MaterialButton(
-            color: getBackground(this.type ?? null),
-            padding: EdgeInsets.only(top: 36, bottom: 18, left: 12, right: 12),
-            shape: new RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(0), side: BorderSide.none),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Row(
-                children: [
-                  iconUri != null
-                      ? Image.asset(
-                          iconUri,
-                          fit: BoxFit.contain,
-                          height: 30,
-                          width: 30,
-                        )
-                      : Icon(
-                          getIcon(this.type ?? null),
-                          color: Colors.white,
-                          size: 34,
-                        ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        this.title ?? '',
-                        style: titleStyle,
-                        maxLines: widget.maxLinesTitle,
-                      ),
-                      SizedBox(
-                        height: 6,
-                      ),
-                      Text(
-                        this.message ?? '',
-                        style: contentStyle,
-                        maxLines: widget.maxLinesContent,
-                      )
-                    ],
-                  ))
-                ],
+        child: GestureDetector(
+          onVerticalDragStart: (data) => hide(),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: MaterialButton(
+              color: getBackground(this.type ?? null),
+              padding: EdgeInsets.only(top: 36, bottom: 18, left: 12, right: 12),
+              shape: new RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(0), side: BorderSide.none),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Row(
+                  children: [
+                    iconUri != null
+                        ? Image.asset(
+                      iconUri,
+                      fit: BoxFit.contain,
+                      height: 30,
+                      width: 30,
+                    )
+                        : Icon(
+                      getIcon(this.type ?? null),
+                      color: Colors.white,
+                      size: 34,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              this.title ?? '',
+                              style: titleStyle,
+                              maxLines: widget.maxLinesTitle,
+                            ),
+                            SizedBox(
+                              height: 6,
+                            ),
+                            Text(
+                              this.message ?? '',
+                              style: contentStyle,
+                              maxLines: widget.maxLinesContent,
+                            )
+                          ],
+                        ))
+                  ],
+                ),
               ),
+              onPressed: onPress,
             ),
-            onPressed: onPress,
           ),
         ),
       ),

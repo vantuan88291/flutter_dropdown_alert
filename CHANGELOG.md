@@ -13,3 +13,7 @@
 ## [0.0.4] - TODO: Update doc.
 
 * Update doc.
+
+## [0.0.5] - TODO: Add feature.
+
+* Add drag up to dismiss alert
