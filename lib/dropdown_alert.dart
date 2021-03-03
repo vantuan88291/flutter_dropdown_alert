@@ -5,6 +5,7 @@ import 'alert_controller.dart';
 import 'model/data_alert.dart';
 
 typedef VoidCallBack = void Function(Map<String, dynamic>, TypeAlert);
+enum AlertPosition { TOP, BOTTOM }
 
 class DropdownAlert extends StatefulWidget {
   final VoidCallBack onTap;
@@ -20,6 +21,7 @@ class DropdownAlert extends StatefulWidget {
   final int maxLinesContent;
   final int duration;
   final int delayDismiss;
+  final AlertPosition position;
 
   const DropdownAlert(
       {Key key,
@@ -35,7 +37,8 @@ class DropdownAlert extends StatefulWidget {
       this.maxLinesTitle,
       this.maxLinesContent,
       this.duration,
-      this.delayDismiss})
+      this.delayDismiss,
+      this.position = AlertPosition.TOP})
       : super(key: key);
 
   @override
@@ -209,54 +212,57 @@ class DropdownAlertWidget extends State<DropdownAlert>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (c, v) => Positioned(
-        top: _animationPush.value,
+        top: widget.position == AlertPosition.TOP ? _animationPush.value : null,
+        bottom: widget.position == AlertPosition.BOTTOM ? _animationPush.value : null,
         child: GestureDetector(
           onVerticalDragStart: (data) => hide(),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: MaterialButton(
               color: getBackground(this.type ?? null),
-              padding: EdgeInsets.only(top: 36, bottom: 18, left: 12, right: 12),
+              padding:
+                  EdgeInsets.only(top: widget.position == AlertPosition.TOP ? 36 : 18, bottom: 18, left: 12, right: 12),
               shape: new RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0), side: BorderSide.none),
+                  borderRadius: BorderRadius.circular(0),
+                  side: BorderSide.none),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Row(
                   children: [
                     iconUri != null
                         ? Image.asset(
-                      iconUri,
-                      fit: BoxFit.contain,
-                      height: 30,
-                      width: 30,
-                    )
+                            iconUri,
+                            fit: BoxFit.contain,
+                            height: 30,
+                            width: 30,
+                          )
                         : Icon(
-                      getIcon(this.type ?? null),
-                      color: Colors.white,
-                      size: 34,
-                    ),
+                            getIcon(this.type ?? null),
+                            color: Colors.white,
+                            size: 34,
+                          ),
                     SizedBox(
                       width: 10,
                     ),
                     Expanded(
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              this.title ?? '',
-                              style: titleStyle,
-                              maxLines: widget.maxLinesTitle,
-                            ),
-                            SizedBox(
-                              height: 6,
-                            ),
-                            Text(
-                              this.message ?? '',
-                              style: contentStyle,
-                              maxLines: widget.maxLinesContent,
-                            )
-                          ],
-                        ))
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          this.title ?? '',
+                          style: titleStyle,
+                          maxLines: widget.maxLinesTitle,
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        Text(
+                          this.message ?? '',
+                          style: contentStyle,
+                          maxLines: widget.maxLinesContent,
+                        )
+                      ],
+                    ))
                   ],
                 ),
               ),

@@ -7,7 +7,12 @@ A dropdown alert package for flutter
 Dropdown alert will help to notify to user when you call api success, error or something like that. It's will similar with push notification but you can custom more than that. You can show alert at anywhere without widget.
 
 ## Demo
+
+### Top:
 ![](https://github.com/vantuan88291/flutter_dropdown_alert/raw/master/screenshot/dropdown.gif)
+
+### Bottom:
+![](https://github.com/vantuan88291/flutter_dropdown_alert/raw/master/screenshot/demo-2.png)
 
 ##  How to use it.
 
@@ -103,6 +108,7 @@ There are 2 ways to do that:
 | maxLinesContent            |                                                                                       | null                                                                                                                                                                                  |
 | duration                   | duration of animation                                                                 | 300                                                                                                                                                                                   |
 | delayDismiss               | delay time when alert auto dismiss, set to 0 if you want to freeze alert              | 3000                                                                                                                                                                                  |
+| position                   | show the position of alert, include: AlertPosition.TOP, AlertPosition.BOTTOM          | AlertPosition.TOP                                                                                                                                                                     |
 
 
 `The ideal from react-native-dropdownalert`

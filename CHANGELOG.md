@@ -21,3 +21,7 @@
 ## [0.0.6] - TODO: Refactor AlertController
 
 * Remove instance of controller
+
+## [0.0.7] - TODO: Add position
+
+* Add position of alert at TOP and BOTTOM
