@@ -51,7 +51,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void _success() {
     Map<String, dynamic> payload = new Map<String, dynamic>();
     payload["data"] = "content";
-    AlertController.show("Success", "Success message here!", TypeAlert.success, payload);
+    AlertController.show(
+        "Success", "Success message here!", TypeAlert.success, payload);
   }
 
   void _warning() {
@@ -66,10 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    AlertController.onTabListener((Map<String, dynamic> payload, TypeAlert type) {
+    AlertController.onTabListener(
+        (Map<String, dynamic> payload, TypeAlert type) {
       print("$payload - $type");
     });
   }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done

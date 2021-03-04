@@ -29,3 +29,7 @@
 ## [0.0.8] - TODO: Fixes some bug
 
 * Fixes some bug
+
+## [0.0.9] - TODO: Fixes some bug
+
+* Fixes some bug

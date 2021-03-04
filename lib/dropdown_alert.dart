@@ -92,7 +92,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
   }
 
   // Get daylay second when dismiss, if null it will be freeze
-  int getDelay() {
+  dynamic getDelay() {
     if (widget.delayDismiss != null && widget.delayDismiss > 0) {
       return widget.delayDismiss;
     } else if (widget.delayDismiss == null) {
@@ -100,6 +100,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
     } else if (widget.delayDismiss <= 0) {
       return null;
     }
+    return null;
   }
 
   @override
@@ -240,15 +241,20 @@ class DropdownAlertWidget extends State<DropdownAlert>
       animation: _animationController,
       builder: (c, v) => Positioned(
         top: widget.position == AlertPosition.TOP ? _animationPush.value : null,
-        bottom: widget.position == AlertPosition.BOTTOM ? _animationPush.value : null,
+        bottom: widget.position == AlertPosition.BOTTOM
+            ? _animationPush.value
+            : null,
         child: GestureDetector(
           onVerticalDragStart: (data) => hide(),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: MaterialButton(
               color: getBackground(this.type ?? null),
-              padding:
-                  EdgeInsets.only(top: widget.position == AlertPosition.TOP ? 36 : 18, bottom: 18, left: 12, right: 12),
+              padding: EdgeInsets.only(
+                  top: widget.position == AlertPosition.TOP ? 36 : 18,
+                  bottom: 18,
+                  left: 12,
+                  right: 12),
               shape: new RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(0),
                   side: BorderSide.none),
