@@ -38,7 +38,7 @@ class DropdownAlert extends StatefulWidget {
   // Set max line of title, default null
   final int maxLinesTitle;
 
-  // Set max line of Content, default null
+  // Set max line of content, default null
   final int maxLinesContent;
 
   final int duration;
