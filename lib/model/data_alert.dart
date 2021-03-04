@@ -7,4 +7,5 @@ class DataAlert {
   DataAlert(this.message, this.title, this.type, {this.payload});
 }
 
+// Type of alert
 enum TypeAlert { success, error, warning }

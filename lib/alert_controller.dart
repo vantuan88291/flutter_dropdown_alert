@@ -7,8 +7,13 @@ typedef VoidCallBackWithValue = void Function(String, String, TypeAlert,
     [Map<String, dynamic>]);
 
 class AlertController {
+  // Show callback, can call anywhere
   VoidCallBackWithValue _show;
+
+  // Hide callback, can call anywhere
   VoidCallBack _hide;
+
+  // Listener callback when tab on the alert
   VoidCallBackListenerTab _tabListener;
 
   static AlertController instance = AlertController._init();
@@ -44,6 +49,7 @@ class AlertController {
     this._hide = hide;
   }
 
+  // Dispose the alert controller when app dispose
   dispose() {
     this._show = null;
     this._hide = null;

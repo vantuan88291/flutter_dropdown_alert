@@ -25,3 +25,7 @@
 ## [0.0.7] - TODO: Add position
 
 * Add position of alert at TOP and BOTTOM
+
+## [0.0.8] - TODO: Fixes some bug
+
+* Fixes some bug

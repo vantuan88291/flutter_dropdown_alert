@@ -8,19 +8,44 @@ typedef VoidCallBack = void Function(Map<String, dynamic>, TypeAlert);
 enum AlertPosition { TOP, BOTTOM }
 
 class DropdownAlert extends StatefulWidget {
+  // Callback when click on alert
   final VoidCallBack onTap;
+
+  // Add image for success status, get from assets
   final String successImage;
+
+  // Add image for warning status, get from assets
   final String warningImage;
+
+  // Add image for error status, get from assets
   final String errorImage;
+
+  // Change color background of error status
   final Color errorBackground;
+
+  // Change color background of success status
   final Color successBackground;
+
+  // Change color background of warning status
   final Color warningBackground;
+
+  // Change style of title
   final TextStyle titleStyle;
+
+  // Change style of content
   final TextStyle contentStyle;
+
+  // Set max line of title, default null
   final int maxLinesTitle;
+
+  // Set max line of Content, default null
   final int maxLinesContent;
+
   final int duration;
+
   final int delayDismiss;
+
+  // Set position of alert, default AlertPosition.TOP
   final AlertPosition position;
 
   const DropdownAlert(
@@ -47,8 +72,8 @@ class DropdownAlert extends StatefulWidget {
 
 class DropdownAlertWidget extends State<DropdownAlert>
     with TickerProviderStateMixin {
-  final DURATION = 300;
-  final DELAY = 3000;
+  final duration = 300;
+  final delay = 3000;
   AnimationController _animationController;
   Animation _animationPush;
   Timer _timer;
@@ -63,14 +88,15 @@ class DropdownAlertWidget extends State<DropdownAlert>
     if (widget.duration != null && widget.duration > 0) {
       return widget.duration;
     }
-    return DURATION;
+    return duration;
   }
 
+  // Get daylay second when dismiss, if null it will be freeze
   int getDelay() {
     if (widget.delayDismiss != null && widget.delayDismiss > 0) {
       return widget.delayDismiss;
     } else if (widget.delayDismiss == null) {
-      return DELAY;
+      return delay;
     } else if (widget.delayDismiss <= 0) {
       return null;
     }
@@ -166,6 +192,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
     }
   }
 
+  // Use it when Image was null
   IconData getIcon(TypeAlert type) {
     switch (type) {
       case TypeAlert.success:
