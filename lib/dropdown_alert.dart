@@ -4,52 +4,52 @@ import 'package:flutter/material.dart';
 import 'alert_controller.dart';
 import 'model/data_alert.dart';
 
-typedef VoidCallBack = void Function(Map<String, dynamic>, TypeAlert);
+typedef VoidCallBack = void Function(Map<String, dynamic>?, TypeAlert);
 enum AlertPosition { TOP, BOTTOM }
 
 class DropdownAlert extends StatefulWidget {
   // Callback when click on alert
-  final VoidCallBack onTap;
+  final VoidCallBack? onTap;
 
   // Add image for success status, get from assets
-  final String successImage;
+  final String? successImage;
 
   // Add image for warning status, get from assets
-  final String warningImage;
+  final String? warningImage;
 
   // Add image for error status, get from assets
-  final String errorImage;
+  final String? errorImage;
 
   // Change color background of error status
-  final Color errorBackground;
+  final Color? errorBackground;
 
   // Change color background of success status
-  final Color successBackground;
+  final Color? successBackground;
 
   // Change color background of warning status
-  final Color warningBackground;
+  final Color? warningBackground;
 
   // Change style of title
-  final TextStyle titleStyle;
+  final TextStyle? titleStyle;
 
   // Change style of content
-  final TextStyle contentStyle;
+  final TextStyle? contentStyle;
 
   // Set max line of title, default null
-  final int maxLinesTitle;
+  final int? maxLinesTitle;
 
   // Set max line of content, default null
-  final int maxLinesContent;
+  final int? maxLinesContent;
 
-  final int duration;
+  final int? duration;
 
-  final int delayDismiss;
+  final int? delayDismiss;
 
   // Set position of alert, default AlertPosition.TOP
-  final AlertPosition position;
+  final AlertPosition? position;
 
   const DropdownAlert(
-      {Key key,
+      {Key? key,
       this.onTap,
       this.successImage,
       this.warningImage,
@@ -74,30 +74,30 @@ class DropdownAlertWidget extends State<DropdownAlert>
     with TickerProviderStateMixin {
   final duration = 300;
   final delay = 3000;
-  AnimationController _animationController;
-  Animation _animationPush;
-  Timer _timer;
-  Timer _timerRelay;
-  AlertController _controller;
-  String title;
-  String message;
-  TypeAlert type;
-  Map<String, dynamic> payload;
+  late AnimationController? _animationController;
+  Animation? _animationPush;
+  Timer? _timer;
+  Timer? _timerRelay;
+  AlertController? _controller;
+  String? title;
+  String? message;
+  TypeAlert? type;
+  Map<String, dynamic>? payload;
 
   int getDuration() {
-    if (widget.duration != null && widget.duration > 0) {
-      return widget.duration;
+    if (widget.duration != null && widget.duration! > 0) {
+      return widget.duration!;
     }
     return duration;
   }
 
   // Get daylay second when dismiss, if null it will be freeze
   dynamic getDelay() {
-    if (widget.delayDismiss != null && widget.delayDismiss > 0) {
+    if (widget.delayDismiss != null && widget.delayDismiss! > 0) {
       return widget.delayDismiss;
     } else if (widget.delayDismiss == null) {
       return delay;
-    } else if (widget.delayDismiss <= 0) {
+    } else if (widget.delayDismiss! <= 0) {
       return null;
     }
     return null;
@@ -107,21 +107,21 @@ class DropdownAlertWidget extends State<DropdownAlert>
   void initState() {
     super.initState();
     _controller = AlertController();
-    _controller.setShow(show);
-    _controller.setHide(hide);
+    _controller?.setShow(show);
+    _controller?.setHide(hide);
     _animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: getDuration()));
     _animationPush =
-        Tween(begin: -180.0, end: 0.0).animate(_animationController);
+        Tween(begin: -180.0, end: 0.0).animate(_animationController!);
   }
 
   show(String title, String message, TypeAlert type,
-      [Map<String, dynamic> payload]) {
+      [Map<String, dynamic>? payload]) {
     final delay = getDelay();
-    if (!_animationController.isDismissed) {
+    if (!_animationController!.isDismissed) {
       cancelTimerRelay();
       cancelTimer();
-      _animationController.reverse();
+      _animationController!.reverse();
       _timerRelay = Timer(Duration(milliseconds: getDuration()), () {
         setState(() {
           this.title = title;
@@ -129,10 +129,10 @@ class DropdownAlertWidget extends State<DropdownAlert>
           this.type = type;
           this.payload = payload ?? null;
         });
-        _animationController.forward();
+        _animationController!.forward();
         if (delay != null) {
           _timer = Timer(Duration(milliseconds: delay), () {
-            _animationController.reverse();
+            _animationController!.reverse();
           });
         }
       });
@@ -143,10 +143,10 @@ class DropdownAlertWidget extends State<DropdownAlert>
         this.type = type;
         this.payload = payload ?? null;
       });
-      _animationController.forward();
+      _animationController!.forward();
       if (delay != null) {
         _timer = Timer(Duration(milliseconds: delay), () {
-          _animationController.reverse();
+          _animationController!.reverse();
         });
       }
     }
@@ -154,18 +154,18 @@ class DropdownAlertWidget extends State<DropdownAlert>
 
   hide() {
     cancelTimer();
-    _animationController.reverse();
+    _animationController!.reverse();
   }
 
   cancelTimer() {
     if (_timer != null) {
-      _timer.cancel();
+      _timer!.cancel();
     }
   }
 
   cancelTimerRelay() {
     if (_timerRelay != null) {
-      _timerRelay.cancel();
+      _timerRelay!.cancel();
     }
   }
 
@@ -173,14 +173,14 @@ class DropdownAlertWidget extends State<DropdownAlert>
     cancelTimer();
     hide();
     if (widget.onTap != null) {
-      widget.onTap(this.payload, this.type);
+      widget.onTap!(this.payload!, this.type!);
     }
-    if (_controller.getTabListener() != null) {
-      _controller.getTabListener()(this.payload, this.type);
+    if (_controller?.getTabListener() != null) {
+      _controller?.getTabListener()(this.payload, this.type!);
     }
   }
 
-  String getIconUri(TypeAlert type) {
+  String? getIconUri(TypeAlert? type) {
     switch (type) {
       case TypeAlert.success:
         return widget.successImage ?? null;
@@ -194,7 +194,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
   }
 
   // Use it when Image was null
-  IconData getIcon(TypeAlert type) {
+  IconData? getIcon(TypeAlert? type) {
     switch (type) {
       case TypeAlert.success:
         return Icons.check;
@@ -207,7 +207,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
     }
   }
 
-  Color getBackground(TypeAlert type) {
+  Color getBackground(TypeAlert? type) {
     switch (type) {
       case TypeAlert.success:
         return widget.successBackground ?? Colors.green;
@@ -223,10 +223,10 @@ class DropdownAlertWidget extends State<DropdownAlert>
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    _controller?.dispose();
     _controller = null;
-    _timer.cancel();
-    _timerRelay.cancel();
+    _timer!.cancel();
+    _timerRelay!.cancel();
   }
 
   @override
@@ -236,20 +236,20 @@ class DropdownAlertWidget extends State<DropdownAlert>
         .merge(widget.titleStyle);
     final contentStyle =
         TextStyle(color: Colors.white).merge(widget.contentStyle);
-    String iconUri = getIconUri(this.type ?? null);
+    String? iconUri = getIconUri(this.type);
     return AnimatedBuilder(
-      animation: _animationController,
+      animation: _animationController!,
       builder: (c, v) => Positioned(
-        top: widget.position == AlertPosition.TOP ? _animationPush.value : null,
+        top: widget.position == AlertPosition.TOP ? _animationPush!.value : null,
         bottom: widget.position == AlertPosition.BOTTOM
-            ? _animationPush.value
+            ? _animationPush!.value
             : null,
         child: GestureDetector(
           onVerticalDragStart: (data) => hide(),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: MaterialButton(
-              color: getBackground(this.type ?? null),
+              color: getBackground(this.type),
               padding: EdgeInsets.only(
                   top: widget.position == AlertPosition.TOP ? 36 : 18,
                   bottom: 18,
@@ -270,7 +270,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
                             width: 30,
                           )
                         : Icon(
-                            getIcon(this.type ?? null),
+                            getIcon(this.type),
                             color: Colors.white,
                             size: 34,
                           ),

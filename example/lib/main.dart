@@ -40,8 +40,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
+  MyHomePage({Key? key, this.title}) : super(key: key);
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // TODO: implement initState
     super.initState();
     AlertController.onTabListener(
-        (Map<String, dynamic> payload, TypeAlert type) {
+        (Map<String, dynamic>? payload, TypeAlert type) {
       print("$payload - $type");
     });
   }
@@ -86,7 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
+          title: Text(widget.title!),
         ),
         body: Center(
           // Center is a layout widget. It takes a single child and positions it
@@ -108,17 +108,17 @@ class _MyHomePageState extends State<MyHomePage> {
             // horizontal).
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlatButton(
+              MaterialButton(
                 onPressed: _success,
                 child: Text("Show success alert", style: textStyle),
                 color: Colors.green,
               ),
-              FlatButton(
+              MaterialButton(
                 onPressed: _warning,
                 child: Text("Show warning alert", style: textStyle),
                 color: Colors.brown,
               ),
-              FlatButton(
+              MaterialButton(
                   onPressed: _error,
                   child: Text(
                     "Show error alert",

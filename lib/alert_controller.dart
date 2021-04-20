@@ -2,43 +2,43 @@ import 'model/data_alert.dart';
 
 typedef VoidCallBack = void Function();
 typedef VoidCallBackListenerTab = void Function(
-    Map<String, dynamic>, TypeAlert);
+    Map<String, dynamic>?, TypeAlert);
 typedef VoidCallBackWithValue = void Function(String, String, TypeAlert,
-    [Map<String, dynamic>]);
+    [Map<String, dynamic>?]);
 
 class AlertController {
   // Show callback, can call anywhere
-  VoidCallBackWithValue _show;
+  VoidCallBackWithValue? _show;
 
   // Hide callback, can call anywhere
-  VoidCallBack _hide;
+  VoidCallBack? _hide;
 
   // Listener callback when tab on the alert
-  VoidCallBackListenerTab _tabListener;
+  VoidCallBackListenerTab? _tabListener;
 
-  static AlertController instance = AlertController._init();
+  static AlertController? instance = AlertController._init();
 
-  factory AlertController() => instance;
+  factory AlertController() => instance!;
 
   AlertController._init() {
     print("AlertController was created!");
   }
 
   static onTabListener(VoidCallBackListenerTab tabListener) {
-    instance._tabListener = tabListener;
+    instance?._tabListener = tabListener;
   }
 
   VoidCallBackListenerTab getTabListener() {
-    return _tabListener;
+    return _tabListener!;
   }
 
   static show(String title, String message, TypeAlert type,
-      [Map<String, dynamic> payload]) {
-    instance._show(title, message, type, payload);
+      [Map<String, dynamic>? payload]) {
+    instance?._show!(title, message, type, payload);
   }
 
   static hide() {
-    instance._hide();
+    instance?._hide!();
   }
 
   setShow(VoidCallBackWithValue show) {

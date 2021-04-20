@@ -33,3 +33,8 @@
 ## [0.0.9] - TODO: Fixes some bug
 
 * Fixes some bug
+
+
+## [1.0.0] - TODO: Support null safety
+
+* Support null safety, flutter 2.x
