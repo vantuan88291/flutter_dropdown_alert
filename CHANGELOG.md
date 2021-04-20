@@ -38,3 +38,8 @@
 ## [1.0.0] - TODO: Support null safety
 
 * Support null safety, flutter 2.x
+
+
+## [1.0.0] - TODO: Update readme
+
+* Update readme

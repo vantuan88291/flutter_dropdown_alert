@@ -71,13 +71,13 @@ There are 2 ways to do that:
 
 - Using listener of controller, put this code inside `initState()` of widget:
 ```dart
-   AlertController.onTabListener((Map<String, dynamic> payload, TypeAlert type) {
+   AlertController.onTabListener((Map<String, dynamic>? payload, TypeAlert type) {
          print("$payload - $type");
        });
 ```
 - Using param `onTap`:
 ```dart
-   DropdownAlert(onTap: (Map<String, dynamic> payload, TypeAlert type) {
+   DropdownAlert(onTap: (Map<String, dynamic> payload?, TypeAlert type) {
                 print("$payload - $type");
              },)
 ```

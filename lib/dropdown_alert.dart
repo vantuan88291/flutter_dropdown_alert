@@ -240,7 +240,8 @@ class DropdownAlertWidget extends State<DropdownAlert>
     return AnimatedBuilder(
       animation: _animationController!,
       builder: (c, v) => Positioned(
-        top: widget.position == AlertPosition.TOP ? _animationPush!.value : null,
+        top:
+            widget.position == AlertPosition.TOP ? _animationPush!.value : null,
         bottom: widget.position == AlertPosition.BOTTOM
             ? _animationPush!.value
             : null,
