@@ -45,6 +45,29 @@ import 'package:flutter_dropdown_alert/dropdown_alert.dart';
      );
 ```
 
+An other way:
+```
+MaterialApp(
+    title: 'Base project',
+    theme: ...,
+    builder: (context, child) => Stack(
+      alignment: Alignment.center,
+      children: [
+        child!,
+        DropdownAlert()
+      ],
+    ),
+    initialRoute: '/',
+    localizationsDelegates: [
+      S.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+      GlobalCupertinoLocalizations.delegate,
+    ],
+    supportedLocales: S.delegate.supportedLocales,
+  )
+```
+
 ## Show alert anywhere, even inside bloc without widget:
 
 Next, import 'alert_controller.dart' into your dart code
