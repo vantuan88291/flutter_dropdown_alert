@@ -67,6 +67,8 @@ MaterialApp(
     supportedLocales: S.delegate.supportedLocales,
   )
 ```
+## Full example source code:
+https://github.com/vantuan88291/flutter_bloc_modular
 
 ## Show alert anywhere, even inside bloc without widget:
 
