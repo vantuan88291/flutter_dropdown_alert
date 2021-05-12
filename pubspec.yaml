@@ -1,6 +1,6 @@
 name: flutter_dropdown_alert
 description: A dropdown alert package for flutter, help user notify the alert like push notification when call api success, fail or waring.
-version: 1.0.1
+version: 1.0.2
 email: vantuan88291@gmail.com
 homepage: https://github.com/vantuan88291/flutter_dropdown_alert
 

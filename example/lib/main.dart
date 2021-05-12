@@ -29,12 +29,13 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Stack(
+      builder: (context, child) => Stack(
         children: [
-          MyHomePage(title: 'Flutter Dropdown Alert Demo'),
+          child!,
           DropdownAlert()
         ],
       ),
+      home: MyHomePage(title: 'Flutter Dropdown Alert Demo'),
     );
   }
 }

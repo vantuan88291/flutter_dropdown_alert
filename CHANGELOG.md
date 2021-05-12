@@ -40,6 +40,10 @@
 * Support null safety, flutter 2.x
 
 
-## [1.0.0] - TODO: Update readme
+## [1.0.1] - TODO: Update readme
 
 * Update readme
+
+## [1.0.2] - TODO: Update readme
+
+* Update more example

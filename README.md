@@ -36,37 +36,16 @@ import 'package:flutter_dropdown_alert/dropdown_alert.dart';
        theme: ThemeData(
          visualDensity: VisualDensity.adaptivePlatformDensity,
        ),
-       home: Stack(
+       builder: (context, child) => Stack(
          children: [
-           MyHomePage(title: 'Flutter Dropdown Alert Demo'),
-           DropdownAlert()
+            child!,
+            DropdownAlert()
          ],
        ),
+       home: MyHomePage(title: 'Flutter Dropdown Alert Demo'),
      );
 ```
 
-An other way:
-```
-MaterialApp(
-    title: 'Base project',
-    theme: ...,
-    builder: (context, child) => Stack(
-      alignment: Alignment.center,
-      children: [
-        child!,
-        DropdownAlert()
-      ],
-    ),
-    initialRoute: '/',
-    localizationsDelegates: [
-      S.delegate,
-      GlobalMaterialLocalizations.delegate,
-      GlobalWidgetsLocalizations.delegate,
-      GlobalCupertinoLocalizations.delegate,
-    ],
-    supportedLocales: S.delegate.supportedLocales,
-  )
-```
 ## Full example source code:
 https://github.com/vantuan88291/flutter_bloc_modular
 
