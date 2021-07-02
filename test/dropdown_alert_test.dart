@@ -5,9 +5,9 @@ import 'package:flutter_dropdown_alert/model/data_alert.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('description', () {
+  group('GIVEN use Dropdown Alert', () {
     testWidgets(
-        'WHEN open screen LoginScreen, THEN should render basic successfully',
+        'WHEN open screen, THEN should render basic successfully',
         (WidgetTester tester) async {
       // Given
       final sut = MaterialApp(
@@ -28,18 +28,18 @@ void main() {
       await tester.pumpWidget(sut);
 
       // workaround here
-      AlertController.show(
-        'dummy for init timer',
-        'message',
-        TypeAlert.warning,
-        {},
-      );
-      AlertController.show(
-        'dummy for init timer',
-        'message',
-        TypeAlert.warning,
-        {},
-      );
+      // AlertController.show(
+      //   'dummy for init timer',
+      //   'message',
+      //   TypeAlert.warning,
+      //   {},
+      // );
+      // AlertController.show(
+      //   'dummy for init timer',
+      //   'message',
+      //   TypeAlert.warning,
+      //   {},
+      // );
       await tester.pumpAndSettle();
       // Then
     });
