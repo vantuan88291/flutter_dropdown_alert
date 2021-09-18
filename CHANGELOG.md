@@ -47,3 +47,8 @@
 ## [1.0.2] - TODO: Update readme
 
 * Update more example
+
+## [1.0.3] - TODO: Improvement, add unit testing
+
+* Add unit testing: https://github.com/vantuan88291/flutter_dropdown_alert/pull/2 (Contributor: trunghieuvn)
+* Fix issue #3: When empty title or message, its will at center vertical

@@ -20,6 +20,9 @@ class DropdownAlert extends StatefulWidget {
   // Add image for error status, get from assets
   final String? errorImage;
 
+  // Add image for close alert, get from assets
+  final String? closeImage;
+
   // Change color background of error status
   final Color? errorBackground;
 
@@ -45,6 +48,8 @@ class DropdownAlert extends StatefulWidget {
 
   final int? delayDismiss;
 
+  final bool? showCloseButton;
+
   // Set position of alert, default AlertPosition.TOP
   final AlertPosition? position;
 
@@ -57,12 +62,14 @@ class DropdownAlert extends StatefulWidget {
       this.errorBackground,
       this.successBackground,
       this.warningBackground,
+      this.closeImage,
       this.titleStyle,
       this.contentStyle,
       this.maxLinesTitle,
       this.maxLinesContent,
       this.duration,
       this.delayDismiss,
+      this.showCloseButton,
       this.position = AlertPosition.TOP})
       : super(key: key);
 
@@ -170,8 +177,10 @@ class DropdownAlertWidget extends State<DropdownAlert>
   }
 
   onPress() {
-    cancelTimer();
-    hide();
+    if (widget.showCloseButton != true) {
+      cancelTimer();
+      hide();
+    }
     if (widget.onTap != null) {
       widget.onTap!(this.payload!, this.type!);
     }
@@ -229,6 +238,16 @@ class DropdownAlertWidget extends State<DropdownAlert>
     _timerRelay!.cancel();
   }
 
+  onCloseAlert() {
+    hide();
+  }
+
+  onSwipeAlert(data) {
+    if (widget.showCloseButton != true) {
+      hide();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final titleStyle = TextStyle(
@@ -246,7 +265,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
             ? _animationPush!.value
             : null,
         child: GestureDetector(
-          onVerticalDragStart: (data) => hide(),
+          onVerticalDragStart: onSwipeAlert,
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: MaterialButton(
@@ -282,21 +301,31 @@ class DropdownAlertWidget extends State<DropdownAlert>
                         child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        this.title != "" ? Text(
                           this.title ?? '',
                           style: titleStyle,
                           maxLines: widget.maxLinesTitle,
-                        ),
+                        ) : SizedBox(),
                         SizedBox(
-                          height: 6,
+                          height: this.title == "" || this.message == "" ? 0 : 6,
                         ),
-                        Text(
+                        this.message != "" ? Text(
                           this.message ?? '',
                           style: contentStyle,
                           maxLines: widget.maxLinesContent,
-                        )
+                        ) : SizedBox()
                       ],
-                    ))
+                    )),
+                    widget.showCloseButton == true ? IconButton(onPressed: onCloseAlert, icon: widget.closeImage != null ? Image.asset(
+                      widget.closeImage!,
+                      fit: BoxFit.contain,
+                      height: 20,
+                      width: 20,
+                    ) : Icon(
+                      Icons.close,
+                      color: Colors.white,
+                      size: 24,
+                    )) : SizedBox()
                   ],
                 ),
               ),
