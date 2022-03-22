@@ -184,7 +184,8 @@ class DropdownAlertWidget extends State<DropdownAlert>
     if (widget.onTap != null) {
       widget.onTap!(this.payload!, this.type!);
     }
-    if (_controller?.getTabListener() != null) {
+    bool? callback = _controller?.isCallbackNull();
+    if (callback == false) {
       _controller?.getTabListener()(this.payload, this.type!);
     }
   }

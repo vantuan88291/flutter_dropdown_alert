@@ -32,6 +32,13 @@ class AlertController {
     return _tabListener!;
   }
 
+  bool isCallbackNull() {
+    if(_tabListener == null) {
+     return true;
+    }
+    return false;
+  }
+
   static show(String title, String message, TypeAlert type,
       [Map<String, dynamic>? payload]) {
     instance?._show!(title, message, type, payload);

@@ -52,3 +52,7 @@
 
 * Add unit testing: https://github.com/vantuan88291/flutter_dropdown_alert/pull/2 (Contributor: trunghieuvn)
 * Fix issue #3: When empty title or message, its will at center vertical
+
+## [1.0.4] - TODO: Fix bug null value when press alert
+
+* Fix issue #6: Null check operator used on a null value when press alert
