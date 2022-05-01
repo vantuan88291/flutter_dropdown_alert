@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'alert_controller.dart';
@@ -50,28 +51,31 @@ class DropdownAlert extends StatefulWidget {
 
   final bool? showCloseButton;
 
+  final Curve animationCurve;
+
   // Set position of alert, default AlertPosition.TOP
   final AlertPosition? position;
 
-  const DropdownAlert(
-      {Key? key,
-      this.onTap,
-      this.successImage,
-      this.warningImage,
-      this.errorImage,
-      this.errorBackground,
-      this.successBackground,
-      this.warningBackground,
-      this.closeImage,
-      this.titleStyle,
-      this.contentStyle,
-      this.maxLinesTitle,
-      this.maxLinesContent,
-      this.duration,
-      this.delayDismiss,
-      this.showCloseButton,
-      this.position = AlertPosition.TOP})
-      : super(key: key);
+  const DropdownAlert({
+    Key? key,
+    this.onTap,
+    this.successImage,
+    this.warningImage,
+    this.errorImage,
+    this.errorBackground,
+    this.successBackground,
+    this.warningBackground,
+    this.closeImage,
+    this.titleStyle,
+    this.contentStyle,
+    this.maxLinesTitle,
+    this.maxLinesContent,
+    this.duration,
+    this.delayDismiss,
+    this.showCloseButton,
+    this.position = AlertPosition.TOP,
+    this.animationCurve = Curves.linear,
+  }) : super(key: key);
 
   @override
   DropdownAlertWidget createState() => DropdownAlertWidget();
@@ -118,8 +122,10 @@ class DropdownAlertWidget extends State<DropdownAlert>
     _controller?.setHide(hide);
     _animationController = AnimationController(
         vsync: this, duration: Duration(milliseconds: getDuration()));
-    _animationPush =
-        Tween(begin: -180.0, end: 0.0).animate(_animationController!);
+    _animationPush = Tween(begin: -180.0, end: 0.0).animate(CurvedAnimation(
+      parent: _animationController!,
+      curve: widget.animationCurve,
+    ));
   }
 
   show(String title, String message, TypeAlert type,
@@ -302,31 +308,42 @@ class DropdownAlertWidget extends State<DropdownAlert>
                         child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        this.title != "" ? Text(
-                          this.title ?? '',
-                          style: titleStyle,
-                          maxLines: widget.maxLinesTitle,
-                        ) : SizedBox(),
+                        this.title != ""
+                            ? Text(
+                                this.title ?? '',
+                                style: titleStyle,
+                                maxLines: widget.maxLinesTitle,
+                              )
+                            : SizedBox(),
                         SizedBox(
-                          height: this.title == "" || this.message == "" ? 0 : 6,
+                          height:
+                              this.title == "" || this.message == "" ? 0 : 6,
                         ),
-                        this.message != "" ? Text(
-                          this.message ?? '',
-                          style: contentStyle,
-                          maxLines: widget.maxLinesContent,
-                        ) : SizedBox()
+                        this.message != ""
+                            ? Text(
+                                this.message ?? '',
+                                style: contentStyle,
+                                maxLines: widget.maxLinesContent,
+                              )
+                            : SizedBox()
                       ],
                     )),
-                    widget.showCloseButton == true ? IconButton(onPressed: onCloseAlert, icon: widget.closeImage != null ? Image.asset(
-                      widget.closeImage!,
-                      fit: BoxFit.contain,
-                      height: 20,
-                      width: 20,
-                    ) : Icon(
-                      Icons.close,
-                      color: Colors.white,
-                      size: 24,
-                    )) : SizedBox()
+                    widget.showCloseButton == true
+                        ? IconButton(
+                            onPressed: onCloseAlert,
+                            icon: widget.closeImage != null
+                                ? Image.asset(
+                                    widget.closeImage!,
+                                    fit: BoxFit.contain,
+                                    height: 20,
+                                    width: 20,
+                                  )
+                                : Icon(
+                                    Icons.close,
+                                    color: Colors.white,
+                                    size: 24,
+                                  ))
+                        : SizedBox()
                   ],
                 ),
               ),
