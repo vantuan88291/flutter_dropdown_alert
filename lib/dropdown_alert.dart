@@ -35,6 +35,9 @@ class DropdownAlert extends StatefulWidget {
   // Change style of title
   final TextStyle? titleStyle;
 
+  //Avoid bottom padding inset
+  final bool avoidBottomInset;
+
   // Change style of content
   final TextStyle? contentStyle;
 
@@ -69,6 +72,7 @@ class DropdownAlert extends StatefulWidget {
       this.maxLinesContent,
       this.duration,
       this.delayDismiss,
+      this.avoidBottomInset = false,
       this.showCloseButton,
       this.position = AlertPosition.TOP})
       : super(key: key);
@@ -273,7 +277,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
               color: getBackground(this.type),
               padding: EdgeInsets.only(
                   top: widget.position == AlertPosition.TOP ? 36 : 18,
-                  bottom: 18 + MediaQuery.of(context).padding.bottom,
+                  bottom: 18 + ( widget.avoidBottomInset ? MediaQuery.of(context).padding.bottom : 0),
                   left: 12,
                   right: 12),
               shape: new RoundedRectangleBorder(
