@@ -56,3 +56,8 @@
 ## [1.0.4] - TODO: Fix bug null value when press alert
 
 * Fix issue #6: Null check operator used on a null value when press alert
+
+
+## [1.0.5] - TODO: Add avoidBottomInset
+
+* Merge pull request #7 by @nathanielajayi7
