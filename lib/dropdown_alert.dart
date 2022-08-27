@@ -277,7 +277,7 @@ class DropdownAlertWidget extends State<DropdownAlert>
               color: getBackground(this.type),
               padding: EdgeInsets.only(
                   top: widget.position == AlertPosition.TOP ? 36 : 18,
-                  bottom: 18 + ( widget.avoidBottomInset ? MediaQuery.of(context).padding.bottom : 0),
+                  bottom: 18 + ( widget.avoidBottomInset ? (MediaQuery.of(context).padding.bottom + MediaQuery.of(context).viewInsets.bottom) : 0),
                   left: 12,
                   right: 12),
               shape: new RoundedRectangleBorder(
