@@ -115,6 +115,7 @@ There are 2 ways to do that:
 | delayDismiss               | delay time when alert auto dismiss, set to 0 if you want to freeze alert              | 3000                                                                                                                                                                                  |
 | position                   | show the position of alert, include: AlertPosition.TOP, AlertPosition.BOTTOM          | AlertPosition.TOP                                                                                                                                                                     |
 | showCloseButton            | When close button is present, only can click on button close to hide the alert        | false                                                                                                                                                                    |
+| avoidBottomInset           | Add optional variable for inset overlap                                               | false                                                                                                                                                                    |
 
 
 `The ideal from react-native-dropdownalert`
