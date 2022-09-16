@@ -61,3 +61,7 @@
 ## [1.0.5] - TODO: Add avoidBottomInset
 
 * Merge pull request #7 by @nathanielajayi7
+
+## [1.0.6] - TODO: Avoid Keyboard when showing from bottom
+
+* Merge pull request #8 by @nathanielajayi7
