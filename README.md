@@ -4,7 +4,7 @@
 
 A dropdown alert package for flutter
 
-Dropdown alert will help to notify to user when you call api success, error or something like that. It's will similar with push notification but you can custom more than that. You can show alert at anywhere without widget.
+Dropdown alert will help to notify to user when you call api success, error or something like that, such as in app notification. It's will similar with push notification but you can custom more than that. You can show alert at anywhere without widget.
 
 ## Demo
 
