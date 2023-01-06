@@ -65,3 +65,5 @@
 ## [1.0.6] - TODO: Avoid Keyboard when showing from bottom
 
 * Merge pull request #8 by @nathanielajayi7
+
+## [1.0.7] - TODO: Update repo url
